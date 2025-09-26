@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bluetooth Device Manager
+
+A modern web application built with Next.js that allows you to connect and manage Bluetooth devices from both smartphones and computers. This app uses the Web Bluetooth API to provide a seamless cross-platform experience.
+
+## Features
+
+- 🔍 **Device Discovery**: Scan for nearby Bluetooth devices
+- 🔗 **Easy Connection**: Connect and disconnect from devices with one click
+- 🔋 **Battery Monitoring**: Check battery levels of connected devices
+- 📱 **Cross-Platform**: Works on smartphones, tablets, and computers
+- 🎨 **Modern UI**: Beautiful, responsive interface with dark mode support
+- ⚡ **Real-time Status**: Live connection status and device information
+
+## Browser Compatibility
+
+The Web Bluetooth API is supported in:
+- Chrome 56+ (Desktop & Android)
+- Edge 79+ (Desktop)
+- Opera 43+ (Desktop & Android)
+- Samsung Internet 6.0+
+
+**Note**: This app requires HTTPS to work properly due to Web Bluetooth API security requirements.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- A compatible browser (see above)
+- HTTPS connection (required for Bluetooth API)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd bluetooth-web-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [https://localhost:3000](https://localhost:3000) in a compatible browser
 
-## Learn More
+### Production Deployment
 
-To learn more about Next.js, take a look at the following resources:
+#### Deploy to Vercel (Recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy automatically
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app is configured with proper headers and HTTPS support for Vercel deployment.
 
-## Deploy on Vercel
+#### Manual Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Build the application:
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Start the production server:
+```bash
+npm start
+```
+
+## Usage
+
+1. **Check Compatibility**: The app will automatically detect if your browser supports Bluetooth
+2. **Scan for Devices**: Click "Scan for Devices" to discover nearby Bluetooth devices
+3. **Connect**: Click "Connect" on any discovered device to establish a connection
+4. **Monitor**: View connection status and battery levels of connected devices
+5. **Manage**: Disconnect or reconnect devices as needed
+
+## Technical Details
+
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS
+- **TypeScript**: Full type safety
+- **Bluetooth API**: Web Bluetooth API with proper error handling
+- **State Management**: Custom React hooks
+- **Responsive Design**: Mobile-first approach
+
+## Security
+
+- Requires HTTPS for Bluetooth API access
+- Proper permission policies configured
+- Secure headers for production deployment
+- No sensitive data stored locally
+
+## Troubleshooting
+
+### Bluetooth Not Working
+- Ensure you're using a compatible browser
+- Check that the site is served over HTTPS
+- Verify Bluetooth is enabled on your device
+- Try refreshing the page
+
+### Device Not Found
+- Make sure the Bluetooth device is in pairing mode
+- Check that the device is within range
+- Try scanning multiple times
+- Some devices may require specific services
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
