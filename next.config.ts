@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Permissions-Policy',
-            value: 'bluetooth=()',
+            value: 'bluetooth=(self)',
           },
           {
             key: 'Feature-Policy',
