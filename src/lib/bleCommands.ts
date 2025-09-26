@@ -12,7 +12,7 @@ export interface PayloadData {
 export interface CommandResult {
   success: boolean;
   message: string;
-  data?: any;
+  data?: PayloadData | string;
   timestamp: string;
 }
 

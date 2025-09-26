@@ -66,7 +66,7 @@ export class BluetoothManager {
             this.error = 'Bluetooth permission denied. Please enable Bluetooth access in your browser settings.';
             return null;
           }
-        } catch (e) {
+        } catch {
           // Permission query not supported, continue anyway
           console.log('Permission query not supported, continuing...');
         }

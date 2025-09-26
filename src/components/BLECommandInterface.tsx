@@ -5,7 +5,7 @@ import { BLECommandManager, PayloadData, CommandResult } from '@/lib/bleCommands
 import { useBluetooth } from '@/hooks/useBluetooth';
 
 export function BLECommandInterface() {
-  const { connectedDevice, connect, disconnect } = useBluetooth();
+  const { connectedDevice } = useBluetooth();
   const [commandManager] = useState(() => new BLECommandManager());
   const [currentPayload, setCurrentPayload] = useState<PayloadData>(commandManager.getCurrentPayload());
   const [commandHistory, setCommandHistory] = useState<CommandResult[]>([]);
@@ -18,7 +18,7 @@ export function BLECommandInterface() {
   useEffect(() => {
     setCurrentPayload(commandManager.getCurrentPayload());
     setCommandHistory(commandManager.getCommandHistory());
-  }, []);
+  }, [commandManager]);
 
   const handleCommand = async (command: string, value?: string) => {
     if (!connectedDevice) {
