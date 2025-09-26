@@ -57,6 +57,21 @@ export class BluetoothManager {
 
     try {
       this.error = null;
+      
+      // Request Bluetooth permission explicitly
+      if ('permissions' in navigator) {
+        try {
+          const permission = await navigator.permissions.query({ name: 'bluetooth' as PermissionName });
+          if (permission.state === 'denied') {
+            this.error = 'Bluetooth permission denied. Please enable Bluetooth access in your browser settings.';
+            return null;
+          }
+        } catch (e) {
+          // Permission query not supported, continue anyway
+          console.log('Permission query not supported, continuing...');
+        }
+      }
+
       const device = await navigator.bluetooth.requestDevice({
         acceptAllDevices: true,
         optionalServices: ['battery_service', 'device_information'],
