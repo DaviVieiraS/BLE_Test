@@ -18,19 +18,19 @@ export function DeviceCard({
   onGetBatteryLevel 
 }: DeviceCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-            <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 dark:border-gray-700 p-6 transition-all duration-300 hover:-translate-y-1">
+      <div className="flex items-start justify-between mb-6">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
             </svg>
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-gray-900 dark:text-white text-lg truncate">
               {device.name}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono truncate">
               {device.id}
             </p>
           </div>
@@ -39,7 +39,7 @@ export function DeviceCard({
         <div className="flex items-center gap-2">
           <div className={`w-3 h-3 rounded-full ${
             device.connected 
-              ? 'bg-green-500 animate-pulse' 
+              ? 'bg-green-500 animate-pulse shadow-lg shadow-green-500/50' 
               : 'bg-gray-300 dark:bg-gray-600'
           }`}></div>
           <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
@@ -50,18 +50,18 @@ export function DeviceCard({
 
       {/* Battery Level */}
       {device.connected && batteryLevel !== null && (
-        <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <div className="mb-6 p-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600 rounded-xl">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
               Battery Level
             </span>
-            <span className="text-sm font-bold text-gray-900 dark:text-white">
+            <span className="text-sm font-bold text-gray-900 dark:text-white bg-white dark:bg-gray-800 px-2 py-1 rounded-lg">
               {batteryLevel}%
             </span>
           </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+          <div className="w-full bg-gray-200 dark:bg-gray-500 rounded-full h-3 overflow-hidden">
             <div 
-              className="bg-green-500 h-2 rounded-full transition-all duration-300"
+              className="bg-gradient-to-r from-green-400 to-green-500 h-3 rounded-full transition-all duration-500 shadow-sm"
               style={{ width: `${batteryLevel}%` }}
             ></div>
           </div>
@@ -69,13 +69,13 @@ export function DeviceCard({
       )}
 
       {/* Action Buttons */}
-      <div className="flex gap-2">
+      <div className="flex gap-3">
         {!device.connected ? (
           <button
             onClick={onConnect}
-            className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+            className="group/btn flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
             </svg>
             Connect
@@ -84,7 +84,7 @@ export function DeviceCard({
           <>
             <button
               onClick={onDisconnect}
-              className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -93,7 +93,7 @@ export function DeviceCard({
             </button>
             <button
               onClick={onGetBatteryLevel}
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center"
+              className="px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-xl transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md"
               title="Get Battery Level"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
