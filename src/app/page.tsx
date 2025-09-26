@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { BluetoothInterface } from '@/components/BluetoothInterface';
-import { BLECommandInterface } from '@/components/BLECommandInterface';
+import { SimpleBLEInterface } from '@/components/SimpleBLEInterface';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'devices' | 'commands'>('devices');
@@ -45,7 +45,7 @@ export default function Home() {
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                 }`}
               >
-                Commands
+                Control
               </button>
             </div>
           </div>
@@ -64,8 +64,8 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-              Connect and control your Bluetooth devices with powerful commands. 
-              Manage payloads, send requests, and monitor device status in real-time.
+              Connect and control your Bluetooth devices with simple, intuitive commands. 
+              Turn devices on/off, manage users, and monitor status with ease.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <div className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-gray-600 dark:text-gray-400">
@@ -88,7 +88,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {activeTab === 'devices' && <BluetoothInterface />}
-        {activeTab === 'commands' && <BLECommandInterface />}
+        {activeTab === 'commands' && <SimpleBLEInterface />}
       </main>
 
       {/* Footer */}
