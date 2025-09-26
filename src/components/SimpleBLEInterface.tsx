@@ -10,7 +10,7 @@ export function SimpleBLEInterface() {
   const [userName, setUserName] = useState<string>('');
   const [deviceStatus, setDeviceStatus] = useState<string>('online');
 
-  const sendCommand = async (command: string, data?: any) => {
+  const sendCommand = async (command: string, data?: Record<string, unknown>) => {
     if (!connectedDevice) {
       setLastMessage('❌ Please connect to a device first');
       return;
