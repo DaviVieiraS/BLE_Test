@@ -6,7 +6,12 @@ import { DeviceCard } from './DeviceCard';
 import { ConnectionStatus } from './ConnectionStatus';
 import { ErrorMessage } from './ErrorMessage';
 
-export function BluetoothInterface() {
+interface BluetoothInterfaceProps {
+  bluetoothState?: ReturnType<typeof useBluetooth>;
+}
+
+export function BluetoothInterface({ bluetoothState }: BluetoothInterfaceProps) {
+  const defaultBluetooth = useBluetooth();
   const {
     isSupported,
     isAvailable,
@@ -20,7 +25,7 @@ export function BluetoothInterface() {
     getBatteryLevel,
     clearError,
     clearDevices,
-  } = useBluetooth();
+  } = bluetoothState || defaultBluetooth;
 
   const [batteryLevels, setBatteryLevels] = useState<Record<string, number | null>>({});
 

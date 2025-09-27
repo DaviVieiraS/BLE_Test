@@ -3,8 +3,13 @@
 import { useState } from 'react';
 import { useBluetooth } from '@/hooks/useBluetooth';
 
-export function SimpleBLEInterface() {
-  const { connectedDevice } = useBluetooth();
+interface SimpleBLEInterfaceProps {
+  bluetoothState?: ReturnType<typeof useBluetooth>;
+}
+
+export function SimpleBLEInterface({ bluetoothState }: SimpleBLEInterfaceProps) {
+  const defaultBluetooth = useBluetooth();
+  const { connectedDevice } = bluetoothState || defaultBluetooth;
   const [isSending, setIsSending] = useState<boolean>(false);
   const [lastMessage, setLastMessage] = useState<string>('');
   const [userName, setUserName] = useState<string>('');

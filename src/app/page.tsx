@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { BluetoothInterface } from '@/components/BluetoothInterface';
 import { SimpleBLEInterface } from '@/components/SimpleBLEInterface';
+import { useBluetooth } from '@/hooks/useBluetooth';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'devices' | 'commands'>('devices');
+  const bluetoothState = useBluetooth();
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -87,8 +89,8 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {activeTab === 'devices' && <BluetoothInterface />}
-        {activeTab === 'commands' && <SimpleBLEInterface />}
+        {activeTab === 'devices' && <BluetoothInterface bluetoothState={bluetoothState} />}
+        {activeTab === 'commands' && <SimpleBLEInterface bluetoothState={bluetoothState} />}
       </main>
 
       {/* Footer */}

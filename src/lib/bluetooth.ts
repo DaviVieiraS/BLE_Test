@@ -187,14 +187,22 @@ export class BluetoothManager {
         return null;
       }
 
-      const batteryService = await server.getPrimaryService('battery_service');
+      // Check if battery service is available
+      const services = await server.getPrimaryServices();
+      const batteryService = services.find(service => service.uuid === 'battery_service');
+      
+      if (!batteryService) {
+        console.log('Battery service not available on this device');
+        return null; // Return null instead of throwing error
+      }
+
       const batteryLevelCharacteristic = await batteryService.getCharacteristic('battery_level');
       const batteryLevel = await batteryLevelCharacteristic.readValue();
       
       return batteryLevel.getUint8(0);
     } catch (error) {
-      this.error = error instanceof Error ? error.message : 'Failed to read battery level';
-      return null;
+      console.log('Battery level not available:', error instanceof Error ? error.message : 'Unknown error');
+      return null; // Return null instead of setting error for missing battery service
     }
   }
 
